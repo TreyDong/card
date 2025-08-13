@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爪爪伙伴咖啡馆</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f7f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .header {
+            background: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0;
+        }
+        .header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 5rem 0;
+            text-align: center;
+        }
+        .section-dark {
+            background-color: #34495e;
+            color: #ecf0f1;
+        }
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .section-dark h2 {
+            color: #fff;
+        }
+        .section p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            color: #e67e22;
+            margin-top: 0;
+        }
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .cta {
+            text-align: center;
+            padding: 5rem 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #e67e22;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #d35400;
+            transform: translateY(-3px);
+        }
+        .footer {
+            background: #2c3e50;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+        /* Scroll Animation CSS */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header scroll-animate">
+        <div class="container">
+            <h1>欢迎来到爪爪伙伴咖啡馆</h1>
+            <p>在这里，每一杯咖啡都充满了爱与陪伴</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="section scroll-animate">
+            <div class="container">
+                <h2>我们的故事</h2>
+                <p>爪爪伙伴咖啡馆不仅仅是一个喝咖啡的地方，它是为所有爱宠人士打造的温馨家园。我们相信，最好的时光是与毛茸茸的朋友一起度过的。因此，我们创造了这个空间，让您和您的宠物可以一同放松、社交，享受美好的一天。</p>
+            </div>
+        </section>
+
+        <section class="section section-dark scroll-animate">
+            <div class="container">
+                <h2>我们的服务</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>精品咖啡与美食</h3>
+                        <p>我们提供精心烘焙的咖啡豆和一系列创意饮品，以及对人和宠物都安全、美味的特色小食。</p>
+                    </div>
+                    <div class="card">
+                        <h3>宠物乐园</h3>
+                        <p>店内设有专门为宠物设计的活动区域，配备了各种玩具和设施，确保它们能在这里尽情玩耍。</p>
+                    </div>
+                    <div class="card">
+                        <h3>定期主题活动</h3>
+                        <p>我们定期举办宠物生日派对、领养日和宠物美容讲座等活动，为您和您的爱宠创造更多美好回忆。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section scroll-animate">
+            <div class="container">
+                <h2>温馨瞬间</h2>
+                <p>看看我们客人们分享的快乐时光！</p>
+                <div class="grid">
+                    <img src="https://images.unsplash.com/photo-1556742521-9713674e3a47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzOTk5Mzh8MHwxfGFsbHx8fHx8fHx8fDE3MTU5Njg5MTl8&ixlib=rb-4.0.3&q=80&w=400" alt="顾客与狗狗在咖啡馆" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1517563863488-821d749419c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzOTk5Mzh8MHwxfGFsbHx8fHx8fHx8fDE3MTU5Njg5NjJ8&ixlib=rb-4.0.3&q=80&w=400" alt="咖啡与猫咪" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1541336440443-7f3762a4a2b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzOTk5Mzh8MHwxfGFsbHx8fHx8fHx8fDE3MTU5Njg5ODV8&ixlib=rb-4.0.3&q=80&w=400" alt="快乐的狗狗" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="cta scroll-animate">
+            <div class="container">
+                <h2>期待您的光临</h2>
+                <p>带上您的毛孩子，来爪爪伙伴咖啡馆享受一段悠闲惬意的时光吧！</p>
+                <a href="#" class="cta-button">立即预定</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 爪爪伙伴咖啡馆. 版权所有.</p>
+        </div>
+    </footer>
+
+    <script>
+    // 用于处理滚动动画的 JavaScript
+    document.addEventListener('DOMContentLoaded', () => {
+        const animatedElements = document.querySelectorAll('.scroll-animate');
+
+        if (!('IntersectionObserver' in window)) {
+            animatedElements.forEach(el => el.classList.add('is-visible'));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animatedElements.forEach(el => {
+            observer.observe(el);
+        });
+    });
+    </script>
+
+</body>
+</html>
