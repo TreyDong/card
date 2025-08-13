@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绿叶咨询 (GreenLeaf Consulting)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        
+        :root {
+            --bg-color: #F9FAFB;
+            --card-bg-color: #FFFFFF;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --gradient-start: #C084FC;
+            --gradient-end: #7E22CE;
+            --border-radius: 20px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: var(--card-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-hero {
+            grid-column: span 2;
+            grid-row: span 2;
+            justify-content: center;
+        }
+        
+        .card-service-3 {
+            grid-column: span 1;
+        }
+
+        .card-process {
+            grid-column: span 2;
+        }
+        
+        .card-cta {
+            grid-column: span 1;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-slogan {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            margin: 0 0 1rem 0;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .metric-value {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            margin: 0.5rem 0;
+            line-height: 1;
+        }
+        
+        .progress-ring {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 1rem auto;
+        }
+
+        .progress-ring__circle {
+            stroke-width: 10px;
+            fill: none;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .progress-ring__background {
+            stroke: #e6e6e6;
+        }
+
+        .progress-ring__progress {
+            stroke: url(#progress-gradient);
+            stroke-dasharray: 283; /* 2 * PI * 45 */
+            stroke-dashoffset: 56.6; /* 283 * (1 - 0.8) */
+            stroke-linecap: round;
+        }
+        
+        .progress-ring__text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 800;
+             background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background-color: var(--bg-color);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .card-cta {
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .card-cta .card-title {
+             color: white;
+        }
+        
+        .card-cta .card-description {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            background-color: white;
+            color: var(--gradient-end);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 0.75rem;
+            stroke: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card-hero { grid-column: span 2; }
+            .card-process { grid-column: span 2; }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-hero, .card-service-3, .card-process, .card-cta {
+                grid-column: span 1;
+            }
+            .hero-title { font-size: 2rem; }
+            .hero-slogan { font-size: 1.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bento-grid">
+        <!-- Card 1: Hero -->
+        <div class="card card-hero">
+            <h1 class="hero-title">绿叶咨询</h1>
+            <h2 class="hero-subtitle">GreenLeaf Consulting</h2>
+            <p class="hero-slogan">引领您的企业迈向可持续未来</p>
+            <p class="card-description">我们通过数据驱动的策略，将环境责任转化为企业的核心竞争力，帮助您实现碳中和与商业增长的双赢。</p>
+        </div>
+
+        <!-- Card 2: Metric 1 -->
+        <div class="card">
+             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.311a15.045 15.045 0 01-7.5 0C4.156 19.84 3 18.293 3 16.5a3 3 0 013-3h9a3 3 0 013 3c0 1.793-1.156 3.34-2.625 3.811z" /></svg>
+            <h3 class="card-title">平均减排效率</h3>
+            <p class="metric-value">35%</p>
+            <p class="card-description">客户通过实施定制化方案，平均碳排放减少超过 35%。</p>
+        </div>
+
+        <!-- Card 3: Metric 2 -->
+        <div class="card" style="align-items: center;">
+            <h3 class="card-title">可再生能源应用</h3>
+            <div class="progress-ring">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                    <defs>
+                        <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#C084FC" />
+                            <stop offset="100%" stop-color="#7E22CE" />
+                        </linearGradient>
+                    </defs>
+                    <circle class="progress-ring__circle progress-ring__background" cx="50" cy="50" r="45"></circle>
+                    <circle class="progress-ring__circle progress-ring__progress" cx="50" cy="50" r="45"></circle>
+                </svg>
+                <div class="progress-ring__text">80%</div>
+            </div>
+            <p class="card-description" style="text-align: center;">助力企业将清洁能源占比提升至 80% 以上。</p>
+        </div>
+
+        <!-- Card 4: Service 1 -->
+        <div class="card">
+             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" /></svg>
+            <h3 class="card-title">企业碳排放评估</h3>
+            <p class="card-description">精准测算、识别减排热点，提供符合国际标准的碳盘查报告。</p>
+            <div class="tags">
+                <span class="tag">Scope 1</span>
+                <span class="tag">Scope 2</span>
+                <span class="tag">ISO 14064</span>
+            </div>
+        </div>
+
+        <!-- Card 5: Service 2 -->
+        <div class="card">
+             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+            <h3 class="card-title">可再生能源转型</h3>
+            <p class="card-description">从光伏、风能到储能，为您定制最具成本效益的能源转型路线图。</p>
+            <div class="tags">
+                <span class="tag">光伏</span>
+                <span class="tag">风能</span>
+                <span class="tag">PPA</span>
+            </div>
+        </div>
+
+        <!-- Card 6: Service 3 -->
+        <div class="card card-service-3">
+             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
+            <h3 class="card-title">可持续供应链管理</h3>
+            <p class="card-description">评估并优化您的供应链，降低环境风险，提升品牌绿色价值。</p>
+            <div class="tags">
+                <span class="tag">绿色采购</span>
+                <span class="tag">循环经济</span>
+                <span class="tag">LCA</span>
+            </div>
+        </div>
+        
+        <!-- Card 7: Process -->
+        <div class="card card-process">
+            <h3 class="card-title">简单三步，开启您的绿色转型</h3>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-icon">①</div>
+                    <h4 class="step-title">诊断与评估</h4>
+                    <p class="card-description" style="font-size:0.9rem;">深入分析现状</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">②</div>
+                    <h4 class="step-title">方案设计</h4>
+                     <p class="card-description" style="font-size:0.9rem;">定制化策略落地</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">③</div>
+                    <h4 class="step-title">持续优化</h4>
+                     <p class="card-description" style="font-size:0.9rem;">跟踪成效改进</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 8: CTA -->
+        <div class="card card-cta">
+            <h3 class="card-title">准备好开始了吗？</h3>
+            <p class="card-description">立即联系我们的专家，获取一份为您量身定制的初步诊断报告。</p>
+            <button class="cta-button">预约免费咨询</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
