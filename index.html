@@ -1,21 +1,185 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 页面生成器</title>
+    <title>WebWizard-Express | 想法，一键成真</title>
+    
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 引入Google Fonts (Inter字体，与苹果的SF字体相似) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f9; }
-        .container { text-align: center; padding: 40px; background-color: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { color: #333; }
-        p { color: #666; }
+        /* 自定义全局样式 */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #000;
+            color: #f5f5f7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 定义滚动动画的初始状态 */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* 定义元素进入视口后的动画状态 */
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 按钮的渐变背景和悬停效果 */
+        .cta-button {
+            background: linear-gradient(90deg, #0071E3, #0077ED);
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 113, 227, 0.25);
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>欢迎使用 AI 页面生成器</h1>
-        <p>这是一个由 n8n、GitHub 和 Netlify 驱动的自动化项目。</p>
-        <p>新的页面会被自动创建在独立的子目录下。</p>
-    </div>
+<body class="overflow-x-hidden">
+
+    <!-- 顶部导航栏 -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter">
+                WebWizard<span class="text-blue-500">Express</span>
+            </div>
+            <a href="#chat-interface" class="cta-button text-white font-semibold px-5 py-2 rounded-full text-sm">
+                立即开始
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 英雄区域 (Hero Section) -->
+        <section class="min-h-screen flex items-center justify-center text-center pt-20">
+            <div class="space-y-6 max-w-4xl mx-auto px-6">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-tight scroll-animate">
+                    想法，一键成真。
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto scroll-animate" style="transition-delay: 0.2s;">
+                    欢迎使用 WebWizard-Express。只需一句话描述您的创意，剩下的交给我们。从一个简单的想法，到一个可以分享的真实网站，现在只需片刻。
+                </p>
+                <div class="pt-6 scroll-animate" style="transition-delay: 0.4s;">
+                    <a href="#chat-interface" class="cta-button text-white font-bold px-8 py-4 rounded-full text-lg">
+                        开启您的第一个创造
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特性介绍区域 1: 工作流程 -->
+        <section class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight scroll-animate">三步，化繁为简</h2>
+                    <p class="text-lg text-gray-400 mt-4 scroll-animate" style="transition-delay: 0.2s;">我们的工作流程直观且高效，为您扫除一切技术障碍。</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <!-- 卡片 1: 对话 -->
+                    <div class="bg-gray-900/50 p-8 rounded-3xl border border-gray-800 scroll-animate">
+                        <div class="text-5xl mb-4">💬</div>
+                        <h3 class="text-2xl font-bold mb-2">对话</h3>
+                        <p class="text-gray-400">用最自然的语言，告诉我们您的想法和风格偏好。</p>
+                    </div>
+                    <!-- 卡片 2: 创造 -->
+                    <div class="bg-gray-900/50 p-8 rounded-3xl border border-gray-800 scroll-animate" style="transition-delay: 0.2s;">
+                        <div class="text-5xl mb-4">✨</div>
+                        <h3 class="text-2xl font-bold mb-2">创造</h3>
+                        <p class="text-gray-400">Agent 在后台自动完成设计、编码与部署的全过程。</p>
+                    </div>
+                    <!-- 卡片 3: 发布 -->
+                    <div class="bg-gray-900/50 p-8 rounded-3xl border border-gray-800 scroll-animate" style="transition-delay: 0.4s;">
+                        <div class="text-5xl mb-4">🔗</div>
+                        <h3 class="text-2xl font-bold mb-2">发布</h3>
+                        <p class="text-gray-400">几分钟后，您将收到一个可公开访问的真实网站链接。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特性介绍区域 2: 设计能力 -->
+        <section class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight scroll-animate">设计，随心所欲</h2>
+                    <p class="text-lg text-gray-400 mt-4 scroll-animate" style="transition-delay: 0.2s;">无论是专业的标准布局，还是追求极致美学，我们都能满足您的需求。</p>
+                </div>
+                <div class="mt-16 bg-gray-900/50 p-4 rounded-3xl border border-gray-800 scroll-animate" style="transition-delay: 0.4s;">
+                    <!-- 此处可以放置一个展示不同风格对比的图片或视频 -->
+                    <div class="aspect-video bg-black rounded-2xl flex items-center justify-center">
+                        <p class="text-gray-500">请求“苹果风格”，获得高级定制美学</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 最终行动号召区域 -->
+        <section class="py-20 md:py-32 text-center">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight scroll-animate">准备好开始了吗？</h2>
+                    <p class="text-lg text-gray-400 mt-4 scroll-animate" style="transition-delay: 0.2s;">您的下一个伟大想法，距离成为现实仅一步之遥。</p>
+                    <div class="mt-10 scroll-animate" style="transition-delay: 0.4s;">
+                        <a href="#chat-interface" class="cta-button text-white font-bold px-8 py-4 rounded-full text-lg">
+                            与 WebWizard-Express 对话
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="py-10 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-sm text-gray-500">
+            <p>&copy; 2024 WebWizard-Express. 一个由 AI 驱动的创造力工具。</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript 用于处理滚动动画
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+
+            // 如果浏览器不支持 IntersectionObserver，则直接显示所有元素
+            if (!('IntersectionObserver' in window)) {
+                animatedElements.forEach(el => el.classList.add('is-visible'));
+                return;
+            }
+
+            // 创建一个观察者
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // 当元素进入视口时，添加 'is-visible' 类
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // 动画触发后，停止观察该元素，以提高性能
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 // 元素可见 10% 时触发
+            });
+
+            // 让观察者开始观察所有带 .scroll-animate 类的元素
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
 </body>
 </html>
