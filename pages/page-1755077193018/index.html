@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深思浅言 - 新播客节目</title>
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #6B7281;
+            --accent-start: #C084FC;
+            --accent-end: #7E22CE;
+            --card-border-radius: 20px;
+            --card-padding: 24px;
+            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --card-hover-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg-color);
+            border-radius: var(--card-border-radius);
+            padding: var(--card-padding);
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .card-content {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Specific Card Styles */
+        .main-visual {
+            grid-column: span 2;
+            grid-row: span 2;
+            background: linear-gradient(135deg, #000 25%, transparent 100%), url('https://images.unsplash.com/photo-1598620249533-902e04a5c3e5?q=80&w=2940&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            color: white;
+            justify-content: flex-end;
+            position: relative;
+        }
+        
+        .main-visual .overlay-content {
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-title {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 0 10px 0;
+        }
+
+        .main-subtitle {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            max-width: 400px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: white;
+            color: var(--text-primary);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: var(--accent-start);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .features-list, .stats-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .features-list li, .stats-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .features-list li:last-child, .stats-list li:last-child {
+            margin-bottom: 0;
+        }
+        .features-list .icon {
+            font-size: 20px;
+            margin-right: 12px;
+            width: 24px;
+            text-align: center;
+        }
+        .stats-list .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-right: 12px;
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        
+        .platforms {
+            grid-column: span 2;
+        }
+        .platform-logos {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .platform-logos svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--text-secondary);
+            transition: fill 0.3s;
+        }
+        .platform-logos svg:hover {
+            fill: var(--text-primary);
+        }
+        
+        .hosts, .topics {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .host-avatars {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .host-avatars img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-start);
+        }
+
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .topic-tag {
+            background-color: var(--bg-color);
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* Scroll Animation */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .main-visual { grid-column: span 2; }
+            .platforms { grid-column: span 2; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 20px 15px; }
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            .main-visual, .platforms { grid-column: span 1; }
+            .main-title { font-size: 36px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="grid-container">
+            
+            <section class="card main-visual scroll-animate">
+                <div class="overlay-content">
+                    <h1 class="main-title">深思浅言</h1>
+                    <p class="main-subtitle">一档深入探索科技、设计与未来商业的播客节目。</p>
+                    <a href="#" class="cta-button">立即收听首期节目</a>
+                </div>
+            </section>
+            
+            <section class="card scroll-animate" style="transition-delay: 100ms;">
+                <h2 class="card-title">核心特色</h2>
+                <ul class="features-list card-content">
+                    <li><span class="icon">🧠</span><div><strong>行业专家</strong><br>与顶级从业者对话。</div></li>
+                    <li><span class="icon">🔍</span><div><strong>深度解析</strong><br>不止于新闻，挖掘背后逻辑。</div></li>
+                    <li><span class="icon">💡</span><div><strong>独家视角</strong><br>提供跨领域的独特见解。</div></li>
+                </ul>
+            </section>
+            
+            <section class="card scroll-animate" style="transition-delay: 200ms;">
+                <h2 class="card-title">首期亮点</h2>
+                <ul class="stats-list card-content">
+                    <li><span class="stat-number">3</span>大核心主题</li>
+                    <li><span class="stat-number">60</span>分钟深度内容</li>
+                    <li>每周三准时更新</li>
+                </ul>
+            </section>
+
+            <section class="card platforms scroll-animate" style="transition-delay: 300ms;">
+                <h2 class="card-title">全平台同步上线</h2>
+                <p class="card-content">在您喜爱的播客平台免费收听。</p>
+                <div class="platform-logos">
+                    <!-- Placeholder SVGs for popular platforms -->
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v6h-2zm0 8h2v2h-2z"/></svg> <!-- Generic Apple Podcasts -->
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.188 12.336c-1.242.714-2.828.804-4.66.444a.43.43 0 01-.35-.588c.15-.384.546-.5.93-.348 1.548.306 2.87.234 3.912-.396a.43.43 0 01.594.348c.012.384-.33.642-.528.54zm.828-2.1c-1.428.828-3.276.924-5.256.516a.516.516 0 01-.42-.696c.18-.468.66-.6.1.132-.42 1.632.276 2.76.12 3.984-.528a.516.516 0 01.708.42c.012.468-.396.768-.624.636zm.876-2.184c-1.68.972-4.428 1.176-6.192.648a.63.63 0 01-.504-.84c.216-.564.792-.72.996-.504 1.464.42 3.564.252 4.968-.564a.63.63 0 01.852.504c.012.564-.468.912-.756.756z"/></svg> <!-- Generic Spotify -->
+                     <svg viewBox="0 0 24 24"><path d="M11.19 2.477L3.464 7.027A1 1 0 003 7.89v8.22a1 1 0 00.464.863l7.727 4.55a1 1 0 001.072 0l7.727-4.55a1 1 0 00.464-.863V7.89a1 1 0 00-.464-.863l-7.727-4.55a1 1 0 00-1.072 0zM12 4.02l6.237 3.67-6.237 3.67-6.237-3.67L12 4.02zm-1 15.01V11.16l-6-3.535v5.86l6 3.525z"/></svg> <!-- Generic Google Podcasts -->
+                </div>
+            </section>
+            
+            <section class="card hosts scroll-animate" style="transition-delay: 400ms;">
+                <h2 class="card-title">本期主播</h2>
+                <div class="host-avatars">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=2080&auto=format&fit=crop" alt="主播王明头像">
+                        <p class="card-content"><strong>王明</strong><br>资深产品设计师</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop" alt="主播李静头像">
+                        <p class="card-content"><strong>李静</strong><br>科技专栏作家</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="card topics scroll-animate" style="transition-delay: 500ms;">
+                <h2 class="card-title">首期话题</h2>
+                <div class="topic-tags">
+                    <span class="topic-tag">人工智能</span>
+                    <span class="topic-tag">未来科技</span>
+                    <span class="topic-tag">设计哲学</span>
+                    <span class="topic-tag">商业模式</span>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+
+            if (!('IntersectionObserver' in window)) {
+                animatedElements.forEach(el => el.classList.add('is-visible'));
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body>
+</html>
