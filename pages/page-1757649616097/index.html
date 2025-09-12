@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>承包商管理平台</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #121212;
+            color: #EAEAEA;
+            margin: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            padding: 80px 0;
+        }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        header p {
+            font-size: 1.25rem;
+            color: #A0A0A0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #007AFF;
+            color: #FFFFFF;
+            padding: 15px 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .features {
+            padding: 60px 0;
+        }
+        .feature-item {
+            padding: 40px;
+            margin-bottom: 40px;
+            background-color: #1E1E1E;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+        .feature-item h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #FFFFFF;
+        }
+        .feature-item p {
+            font-size: 1.1rem;
+            color: #A0A0A0;
+        }
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            color: #777;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="scroll-animate">
+            <h1>简化您的承包商管理</h1>
+            <p>一个无缝、高效的平台，用于入职、管理、支付和分析您的全球承包商团队。</p>
+            <a href="#" class="cta-button">立即开始</a>
+        </header>
+
+        <main class="features">
+            <section class="feature-item scroll-animate">
+                <h2>集中化仪表盘</h2>
+                <p>在一个地方轻松查看和管理所有承包商的合同、发票和项目。告别电子表格和混乱的邮件。</p>
+            </section>
+
+            <section class="feature-item scroll-animate">
+                <h2>合规与支付</h2>
+                <p>自动化合规性检查，并通过我们安全的全球支付系统，以多种货币轻松处理付款。</p>
+            </section>
+
+            <section class="feature-item scroll-animate">
+                <h2>项目与任务跟踪</h2>
+                <p>实时监控项目进展，分配任务，并确保您的承包商与项目目标保持一致，从而提高生产力。</p>
+            </section>
+        </main>
+
+        <footer class="scroll-animate">
+            <p>&copy; 2024 ContractorFlow Inc. 保留所有权利。</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            if (!('IntersectionObserver' in window)) {
+                animatedElements.forEach(el => el.classList.add('is-visible'));
+                return;
+            }
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body>
+</html>
